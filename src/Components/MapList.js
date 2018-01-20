@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Dimensions, ScrollView, StyleSheet } from 'react-native';
+import { Text, View, Dimensions, ScrollView, StyleSheet, Button } from 'react-native';
 // API key AIzaSyB5zeytBeZY06yf1luBhj5TvlKjawZLLCg
 import MapView from 'react-native-maps';
 
@@ -27,6 +27,10 @@ export default class MapList extends Component<{}> {
             },
         };
     }
+    createReminder = () => {
+        const { navigate } = this.props.navigation;
+        navigate('Reminder')
+    }
 
     render() {
         return (
@@ -50,6 +54,12 @@ export default class MapList extends Component<{}> {
                             coordinate={this.state.region}
                         />
                     </MapView>
+                    <Button
+                        onPress={this.createReminder}
+                        title="+"
+                        color="#841584"
+                        accessibilityLabel="Create new reminder"
+                    />
                 </ScrollView>
             </View>
         );
@@ -67,6 +77,6 @@ const styles = StyleSheet.create({
     },
     map: {
         width: SCREEN_WIDTH,
-        height: SCREEN_HEIGHT,
+        height: SCREEN_HEIGHT - 100,
     },
 });
