@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, Dimensions, ScrollView, StyleSheet, Button } from 'react-native';
 // API key AIzaSyB5zeytBeZY06yf1luBhj5TvlKjawZLLCg
 import MapView from 'react-native-maps';
-
+import ReminderModel from '../Model/Reminder'
 
 const { width, height } = Dimensions.get('window');
 const SCREEN_WIDTH = width;
@@ -17,7 +17,7 @@ const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 export default class MapList extends Component<{}> {
     constructor(props) {
         super(props);
-
+        
         this.state = {
             region: {
                 latitude: LATITUDE,
@@ -28,6 +28,16 @@ export default class MapList extends Component<{}> {
         };
     }
     createReminder = () => {
+        debugger
+        var model = new ReminderModel();
+        let reminders = model.getReminders()
+        model.createReminder({
+            Title: "title", 
+            Lattitude: LATITUDE.toString(),
+            Longitude: LONGITUDE.toString(),
+            Description: "description",
+            Location: "vilnius"
+        })
         const { navigate } = this.props.navigation;
         navigate('Reminder')
     }
