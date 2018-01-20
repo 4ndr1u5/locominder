@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { ScrollView, View, StyleSheet, Platform, Text, TextInput } from 'react-native';
 
 export default class Reminder extends Component<{}> {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      reminder: "rem"
+    }
+  }
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to Reminder!
-        </Text>
+        <Text>zaza</Text>
+        <TextInput
+          style={{ height: 40, width:100, borderColor: 'gray', borderWidth: 1 }}
+          onChangeText={(reminder) => this.setState({ reminder })}
+          value={this.state.reminder} />
       </View>
     );
   }

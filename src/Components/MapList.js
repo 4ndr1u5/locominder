@@ -28,7 +28,6 @@ export default class MapList extends Component<{}> {
         };
     }
     createReminder = () => {
-        debugger
         var model = new ReminderModel();
         let reminders = model.getReminders()
         model.createReminder({

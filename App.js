@@ -22,9 +22,9 @@ import {
 
 
 export default App = StackNavigator({
+  Reminder: { screen: Reminder },
   MapList: { screen: MapList },
   GridList: { screen: GridList },
-  Reminder: { screen: Reminder }
 });
 
 

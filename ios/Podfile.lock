@@ -1,4 +1,10 @@
 PODS:
+  - CocoaLumberjack (3.4.0):
+    - CocoaLumberjack/Default (= 3.4.0)
+    - CocoaLumberjack/Extensions (= 3.4.0)
+  - CocoaLumberjack/Default (3.4.0)
+  - CocoaLumberjack/Extensions (3.4.0):
+    - CocoaLumberjack/Default
   - GoogleMaps (2.5.0):
     - GoogleMaps/Maps (= 2.5.0)
   - GoogleMaps/Base (2.5.0)
@@ -45,10 +51,18 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
+  - RNBackgroundFetch (2.2.1):
+    - React
+  - RNBackgroundGeolocation (2.10.1):
+    - CocoaLumberjack (~> 3.0)
+    - React
+  - RNVectorIcons (4.5.0):
+    - React
   - yoga (0.51.0.React)
 
 DEPENDENCIES:
   - GoogleMaps
+  - React (from `../node_modules/react-native`)
   - react-native-google-maps (from `../node_modules/react-native-maps`)
   - react-native-maps (from `../node_modules/react-native-maps`)
   - React/BatchedBridge (from `../node_modules/react-native`)
@@ -63,6 +77,9 @@ DEPENDENCIES:
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTVibration (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
+  - RNBackgroundFetch (from `../node_modules/react-native-background-fetch`)
+  - RNBackgroundGeolocation (from `../node_modules/react-native-background-geolocation`)
+  - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga/yoga.podspec`)
 
 EXTERNAL SOURCES:
@@ -72,16 +89,26 @@ EXTERNAL SOURCES:
     :path: ../node_modules/react-native-maps
   react-native-maps:
     :path: ../node_modules/react-native-maps
+  RNBackgroundFetch:
+    :path: ../node_modules/react-native-background-fetch
+  RNBackgroundGeolocation:
+    :path: ../node_modules/react-native-background-geolocation
+  RNVectorIcons:
+    :path: ../node_modules/react-native-vector-icons
   yoga:
     :path: ../node_modules/react-native/ReactCommon/yoga/yoga.podspec
 
 SPEC CHECKSUMS:
+  CocoaLumberjack: e033a5d8513357af2dd456eb66e202c325c30627
   GoogleMaps: c087b8e5dfe87ca6ebf59adb9b4894a4146bec4f
   React: 541ba768b9855e10cdc76f55427a5cd0653ca806
   react-native-google-maps: 963fc78a5ac32dad3a726e4fa08b5307faa5cab2
   react-native-maps: 066c2afcc89e18726377bcc685315f989ca22449
+  RNBackgroundFetch: 8c4f77f83c398c659bce82af2f0a885079417b9e
+  RNBackgroundGeolocation: c9bbf69b9aa277f0b46754cc5f853bd26051a18f
+  RNVectorIcons: c0dbfbf6068fefa240c37b0f71bd03b45dddac44
   yoga: 17521bbb0dd54a47c0b3ac43253e78cdac7488e0
 
-PODFILE CHECKSUM: c7e9fa139527dae9e4466d294f630c99dc24d9c9
+PODFILE CHECKSUM: 967ad6fb54315db8667f975688ce983bd3b09f24
 
 COCOAPODS: 1.4.0

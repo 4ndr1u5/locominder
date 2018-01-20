@@ -13,14 +13,13 @@ const Reminder = {
     }
 };
 
-const realm = new Realm({ schema: [Reminder] });
+const realm = new Realm({ path: "/Users/Andrius/Desktop/TestRealm.realm", schema: [Reminder] });
 
 export default class ReminderModel {
     getReminders = () => {
         return Array.from(realm.objects('Reminder'))
     }
     createReminder = (reminder) => {
-        debugger
         try {
             realm.write(() => {
                 realm.create('Reminder', reminder);
