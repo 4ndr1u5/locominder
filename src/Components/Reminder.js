@@ -1,22 +1,37 @@
 import React, { Component } from 'react';
-import { ScrollView, View, StyleSheet, Platform, Text, TextInput } from 'react-native';
+import { ScrollView, View, Dimensions,  StyleSheet, Platform, Text, TextInput } from 'react-native';
+import { Button, FormLabel, FormInput } from 'react-native-elements';
+const { width, height } = Dimensions.get('window');
 
 export default class Reminder extends Component<{}> {
   constructor(props) {
     super(props)
 
     this.state = {
-      reminder: "rem"
+      reminder: "",
+      location: "",
+      lattitude: "",
+      longitude: ""
     }
   }
+
+  searchLocation(text) {
+  }
+
+
   render() {
     return (
       <View style={styles.container}>
-        <Text>zaza</Text>
-        <TextInput
-          style={{ height: 40, width:100, borderColor: 'gray', borderWidth: 1 }}
-          onChangeText={(reminder) => this.setState({ reminder })}
-          value={this.state.reminder} />
+        <FormLabel>Remind me to...</FormLabel>
+        <FormInput inputStyle={styles.inputs} ref="reminderText" />
+        <FormLabel>@</FormLabel>
+        <FormInput inputStyle={styles.inputs} ref="reminderLocation" onChangeText={this.searchLocation()} />
+        <Button
+          raised
+          buttonStyle={styles.button}
+          textStyle={{ textAlign: 'center' }}
+          title={`Create`}
+        />
       </View>
     );
   }
@@ -29,10 +44,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
+  inputs: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10,
+    // margin: 100,
+    // padding:100
   },
+  button:{
+    width: width,
+    backgroundColor: 'tomato', 
+    borderRadius: 2,
+    margin:20
+  }
 
 });
