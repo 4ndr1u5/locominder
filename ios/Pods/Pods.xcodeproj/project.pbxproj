@@ -148,7 +148,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 39A317E97B114FC313EBAF6C;
+			remoteGlobalIDString = BCE5B650D86079EEB734AE47;
 			remoteInfo = React;
 		};
 		2C306F3207C6C49EBDEC9C6EA2AA533C /* PBXContainerItemProxy */ = {
@@ -183,14 +183,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 39A317E97B114FC313EBAF6C;
+			remoteGlobalIDString = BCE5B650D86079EEB734AE47;
 			remoteInfo = React;
 		};
 		576D005DBF4FFA59EE5D66D752D9D51D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 39A317E97B114FC313EBAF6C;
+			remoteGlobalIDString = BCE5B650D86079EEB734AE47;
 			remoteInfo = React;
 		};
 		5BEA6FCD2D1C9A6F7465C1C87D518A50 /* PBXContainerItemProxy */ = {
@@ -211,7 +211,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 39A317E97B114FC313EBAF6C;
+			remoteGlobalIDString = BCE5B650D86079EEB734AE47;
 			remoteInfo = React;
 		};
 		9B9ABCDC20EE9CDF7E4E70FE9808AE43 /* PBXContainerItemProxy */ = {
@@ -225,14 +225,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 39A317E97B114FC313EBAF6C;
+			remoteGlobalIDString = BCE5B650D86079EEB734AE47;
 			remoteInfo = React;
 		};
 		B2CE8D815F696F384F3A93356E984500 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 39A317E97B114FC313EBAF6C;
+			remoteGlobalIDString = BCE5B650D86079EEB734AE47;
 			remoteInfo = React;
 		};
 		D345A2AE4FD840573535A753DD7BAA08 /* PBXContainerItemProxy */ = {

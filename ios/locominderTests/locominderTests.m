@@ -16,11 +16,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React Native!"
 
-@interface locominderTests : XCTestCase
+@interface LocominderTests : XCTestCase
 
 @end
 
-@implementation locominderTests
+@implementation LocominderTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL(^)(UIView *view))test
 {
