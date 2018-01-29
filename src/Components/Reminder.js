@@ -4,7 +4,7 @@ import { Button, FormLabel, FormInput } from 'react-native-elements';
 import { GooglePlacesInput } from './GooglePlacesAutocomplete'
 const { width, height } = Dimensions.get('window');
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
- 
+import ReminderModel from '../Model/Reminder'
 const homePlace = { description: 'Home', geometry: { location: { lat: 48.8152937, lng: 2.4597668 } }};
 const workPlace = { description: 'Work', geometry: { location: { lat: 48.8496818, lng: 2.2940881 } }};
  // import Geocoder from 'react-native-geocoding';
@@ -36,6 +36,19 @@ export default class Reminder extends Component<{}> {
   //     }
   //   );
   // }
+  saveReminder(){
+    var model = new ReminderModel();
+    let reminders = model.getReminders()
+    model.createReminder({
+        Title: this.state.reminder, 
+        Lattitude: this.state.location.lat,
+        Longitude: this.state.location.lng,
+        Description: this.state.reminder,
+        Location: this.state.location.address,
+    })
+    const { navigate } = this.props.navigation;
+    navigate('MapList', {location: this.state.location})
+  }
 
   render() {
     return (
@@ -55,6 +68,11 @@ export default class Reminder extends Component<{}> {
       onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
         console.log(data);
         console.log(details);
+        this.setState({location:{address:details.formatted_address
+          , lat:details.geometry.location.lat
+          , lng:details.geometry.location.lng
+        }});
+        // this.setState({locations:details.map(x=>x.geometry.location)})
       }}
       getDefaultValue={() => {
         return ''; // text input default value
@@ -66,12 +84,24 @@ export default class Reminder extends Component<{}> {
         types: '(cities)' // default: 'geocode'
       }}
       styles={{
-        description: {
-          fontWeight: 'bold'
+        textInputContainer: {
+          backgroundColor: 'rgba(0,0,0,0)',
+          borderTopWidth: 0,
+          borderBottomWidth:0,
+        },
+        textInput: {
+          marginLeft: 0,
+          marginRight: 0,
+          height: 38,
+          color: '#5d5d5d',
+          fontSize: 16
         },
         predefinedPlacesDescription: {
           color: '#1faadb'
-        }
+        },
+      
+      
+
       }}
  
       currentLocation={true} // Will add a 'Current location' button at the top of the predefined places list
@@ -91,13 +121,14 @@ export default class Reminder extends Component<{}> {
  
       debounce={200} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
     //   renderLeftButton={() => <Image source={require('path/custom/left-icon')} />}
-      // renderRightButton={() => <Text>Custom text after the inputg</Text>}
+      renderRightButton={() => <Text style={styles.selectedLocation}>{this.state.location.address}</Text>}
     />
         <Button
           raised
           buttonStyle={styles.button}
           textStyle={{ textAlign: 'center' }}
           title={`Create`}
+          onPress={this.saveReminder.bind(this)}
         />
       </View>
     );
@@ -122,6 +153,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'tomato', 
     borderRadius: 2,
     margin:20
+  },
+  selectedLocation:{
+    fontSize:20,
   }
 
 });

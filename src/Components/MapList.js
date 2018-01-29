@@ -17,29 +17,29 @@ const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 export default class MapList extends Component<{}> {
     constructor(props) {
         super(props);
-        
+        let location = this.props.navigation.state.params.location
         this.state = {
             region: {
-                latitude: LATITUDE,
-                longitude: LONGITUDE,
+                latitude: location.lat,
+                longitude: location.lng,
                 latitudeDelta: LATITUDE_DELTA,
                 longitudeDelta: LONGITUDE_DELTA,
             },
         };
     }
-    createReminder = () => {
-        var model = new ReminderModel();
-        let reminders = model.getReminders()
-        model.createReminder({
-            Title: "title", 
-            Lattitude: LATITUDE.toString(),
-            Longitude: LONGITUDE.toString(),
-            Description: "description",
-            Location: "vilnius"
-        })
-        const { navigate } = this.props.navigation;
-        navigate('Reminder')
-    }
+    // createReminder = () => {
+    //     var model = new ReminderModel();
+    //     let reminders = model.getReminders()
+    //     model.createReminder({
+    //         Title: "title", 
+    //         Lattitude: LATITUDE.toString(),
+    //         Longitude: LONGITUDE.toString(),
+    //         Description: "description",
+    //         Location: "vilnius"
+    //     })
+    //     const { navigate } = this.props.navigation;
+    //     navigate('Reminder')
+    // }
 
     render() {
         return (
@@ -63,12 +63,7 @@ export default class MapList extends Component<{}> {
                             coordinate={this.state.region}
                         />
                     </MapView>
-                    <Button
-                        onPress={this.createReminder}
-                        title="+"
-                        color="#841584"
-                        accessibilityLabel="Create new reminder"
-                    />
+                   
                 </ScrollView>
             </View>
         );
