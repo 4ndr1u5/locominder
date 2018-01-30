@@ -1,19 +1,59 @@
 import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { Text, View, Dimensions, ScrollView, StyleSheet, Button, ListView } from 'react-native';
+import MapView from 'react-native-maps';
+import ReminderModel from '../Model/Reminder'
+
+const { width, height } = Dimensions.get('window');
+const SCREEN_WIDTH = width;
+const SCREEN_HEIGHT = height;
 
 export default class GridList extends Component<{}> {
+  constructor(props) {
+    super(props);
+    let reminder = null
+
+    if (this.props.navigation.state.params) {
+      reminder = this.props.navigation.state.params.reminder
+    }
+    let model = new ReminderModel();
+    let reminders = model.getReminders()
+
+
+    this.state = {
+      reminders
+    };
+    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+    this.state = {
+      dataSource: ds.cloneWithRows(reminders),
+    };
+
+  }
+  addReminder = () => {
+    const { navigate } = this.props.navigation;
+    navigate('Reminder')
+  }
+
+
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to GridList!
-        </Text>
-       
+        <ScrollView
+          style={StyleSheet.absoluteFill}
+          contentContainerStyle={styles.scrollview}
+        >
+          <ListView
+            dataSource={this.state.dataSource}
+            renderRow={(rowData) => <Text>{rowData.title}</Text>}
+          />
+          <Button
+            raised
+            buttonStyle={styles.button}
+            textStyle={{ textAlign: 'center' }}
+            title={`+`}
+            onPress={this.addReminder.bind(this)}
+          />
+        </ScrollView>
       </View>
     );
   }
@@ -21,15 +61,15 @@ export default class GridList extends Component<{}> {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: 'flex-end',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  scrollview: {
+    alignItems: 'center',
   },
-
+  list: {
+    width: SCREEN_WIDTH,
+    height: SCREEN_HEIGHT - 100,
+  },
 });

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, Dimensions, ScrollView, StyleSheet, Button } from 'react-native';
 import MapView from 'react-native-maps';
 import ReminderModel from '../Model/Reminder'
-
+import GooglePlacesInput from './GooglePlacesInput'
 const { width, height } = Dimensions.get('window');
 const SCREEN_WIDTH = width;
 const SCREEN_HEIGHT = height;
@@ -16,25 +16,24 @@ export default class MapList extends Component<{}> {
         super(props);
         let reminder = null
 
-        if(this.props.navigation.state.params){
+        if (this.props.navigation.state.params) {
             reminder = this.props.navigation.state.params.reminder
         }
-       debugger
         let model = new ReminderModel();
         let reminders = model.getReminders()
-       
-        if(reminder){
+
+        if (reminder) {
             this.state = {
                 reminder
             };
         }
-        else{
+        else {
             this.state = {
                 reminders
             };
-            
+
         }
-       
+
 
     }
     addReminder = () => {
@@ -42,7 +41,7 @@ export default class MapList extends Component<{}> {
         navigate('Reminder')
     }
 
-    _getRegion = (reminder) =>{
+    _getRegion = (reminder) => {
         return {
             latitude: reminder.lat,
             longitude: reminder.lng,
@@ -67,7 +66,7 @@ export default class MapList extends Component<{}> {
                         rotateEnabled={true}
                         initialRegion={this.state.region}
                     >
-                        {this.state.reminders && this.state.reminders.map(reminder => 
+                        {this.state.reminders && this.state.reminders.map(reminder =>
                             <MapView.Marker
                                 title={reminder.title}
                                 description="..."
@@ -75,10 +74,10 @@ export default class MapList extends Component<{}> {
                             />
                         )}
                         {this.state.reminder && <MapView.Marker
-                                title={this.state.reminder.title}
-                                description="..."
-                                coordinate={this._getRegion(this.state.reminder)}
-                            />}
+                            title={this.state.reminder.title}
+                            description="..."
+                            coordinate={this._getRegion(this.state.reminder)}
+                        />}
 
                     </MapView>
                     <Button

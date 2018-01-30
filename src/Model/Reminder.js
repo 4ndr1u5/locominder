@@ -27,7 +27,5 @@ export default class ReminderModel {
             console.log("Error on creation");
         }
     }
-    // deleteReminder = () => {
-    //     realm.delete();
-    // }
+
 }
