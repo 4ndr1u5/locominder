@@ -4,16 +4,15 @@ const Realm = require('realm');
 const Reminder = {
     name: 'Reminder',
     properties: {
-        Title: 'string',
-        Description: 'string',
-        Lattitude: 'string',
-        Longitude: 'string',
-        Location: 'string',
-        // DueDate: 'date'
+        title: 'string',
+        desc: 'string',
+        lat: 'float',
+        lng: 'float',
+        address: 'string',
     }
 };
 
-const realm = new Realm({ path: "/Users/Andrius/Desktop/TestRealm.realm", schema: [Reminder] });
+const realm = new Realm({ path: "/Users/Andrius/Desktop/locominder.realm", schema: [Reminder] });
 
 export default class ReminderModel {
     getReminders = () => {
@@ -28,7 +27,7 @@ export default class ReminderModel {
             console.log("Error on creation");
         }
     }
-    deleteReminder = () => {
-        realm.delete(book);
-    }
+    // deleteReminder = () => {
+    //     realm.delete();
+    // }
 }

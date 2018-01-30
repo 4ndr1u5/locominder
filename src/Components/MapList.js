@@ -14,42 +14,23 @@ const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 export default class MapList extends Component<{}> {
     constructor(props) {
         super(props);
-        let location
-let reminder
-        if(this.props.navigation.state.params){
-            location = this.props.navigation.state.params.location
-            reminder = this.props.navigation.state.params.reminder
-        }
-       
-        let model = new ReminderModel();
-        let reminders = model.getReminders()
-        reminders.map(rem => {
-            return {
-                reminder: rem.Title,
-                region: {
-                    latitude: rem.Lattitude,
-                    longitude: rem.Longitude,
-                    latitudeDelta: LATITUDE_DELTA,
-                    longitudeDelta: LONGITUDE_DELTA,
-                }
-            }
-        })
+        let reminder = null
 
         if(this.props.navigation.state.params){
+            reminder = this.props.navigation.state.params.reminder
+        }
+       debugger
+        let model = new ReminderModel();
+        let reminders = model.getReminders()
+       
+        if(reminder){
             this.state = {
-                reminder: reminder,
-                region: {
-                    latitude: location.lat,
-                    longitude: location.lng,
-                    latitudeDelta: LATITUDE_DELTA,
-                    longitudeDelta: LONGITUDE_DELTA,
-                },
+                reminder
             };
         }
         else{
             this.state = {
-                reminders: reminders,
-               
+                reminders
             };
             
         }
@@ -59,6 +40,15 @@ let reminder
     addReminder = () => {
         const { navigate } = this.props.navigation;
         navigate('Reminder')
+    }
+
+    _getRegion = (reminder) =>{
+        return {
+            latitude: reminder.lat,
+            longitude: reminder.lng,
+            latitudeDelta: LATITUDE_DELTA,
+            longitudeDelta: LONGITUDE_DELTA,
+        }
     }
 
     render() {
@@ -77,17 +67,17 @@ let reminder
                         rotateEnabled={true}
                         initialRegion={this.state.region}
                     >
-                        {this.state.reminders && this.state.reminders.map(reminder => {
-                            return <MapView.Marker
-                                title={reminder.reminder}
+                        {this.state.reminders && this.state.reminders.map(reminder => 
+                            <MapView.Marker
+                                title={reminder.title}
                                 description="..."
-                                coordinate={reminder.region}
+                                coordinate={this._getRegion(reminder)}
                             />
-                        })}
+                        )}
                         {this.state.reminder && <MapView.Marker
-                                title={reminder.reminder}
+                                title={this.state.reminder.title}
                                 description="..."
-                                coordinate={reminder.region}
+                                coordinate={this._getRegion(this.state.reminder)}
                             />}
 
                     </MapView>

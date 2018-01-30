@@ -13,29 +13,39 @@ export default class Reminder extends Component<{}> {
     super(props)
 
     this.state = {
-      reminder: "",
-      location: {},
+      title: null,
+      lat: null,
+      lng: null,
+      desc: null,
+      address: null
     }
   }
 
   saveReminder() {
     var model = new ReminderModel();
+    debugger
     model.createReminder({
-      Title: this.state.reminder,
-      Lattitude: this.state.location.lat,
-      Longitude: this.state.location.lng,
-      Description: this.state.reminder,
-      Location: this.state.location.address,
+      title: this.state.title,
+      lat: this.state.lat,
+      lng: this.state.lng,
+      desc: this.state.title,
+      address: this.state.address,
     })
     const { navigate } = this.props.navigation;
-    navigate('MapList', { location: this.state.location, reminder: this.state.reminder })
+    navigate('MapList', { reminder: this.state })
+  }
+  updateReminder = (text)=>{
+this.setState({
+  title:text,
+  desc: text
+})
   }
 
   render() {
     return (
       <View style={styles.container}>
         <FormLabel>Remind me to...</FormLabel>
-        <FormInput inputStyle={styles.inputs} ref="reminderText" />
+        <FormInput inputStyle={styles.inputs} ref="title" onChangeText={(text)=>this.updateReminder(text)} />
         <FormLabel>@</FormLabel>
         {/* <FormInput inputStyle={styles.inputs} ref="reminderLocation" onChangeText={(text)=>this.searchLocation(text)} /> */}
         <GooglePlacesAutocomplete
@@ -46,15 +56,13 @@ export default class Reminder extends Component<{}> {
           listViewDisplayed='auto'    // true/false/undefined
           fetchDetails={true}
           renderDescription={(row) => row.description} // custom description render
-          onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
-            console.log(data);
-            console.log(details);
+          onPress={(data, details = null) => { 
+            // 'details' is provided when fetchDetails = true
+            debugger
             this.setState({
-              location: {
                 address: details.formatted_address
                 , lat: details.geometry.location.lat
                 , lng: details.geometry.location.lng
-              }
             });
             // this.setState({locations:details.map(x=>x.geometry.location)})
           }}
@@ -105,7 +113,7 @@ export default class Reminder extends Component<{}> {
 
           debounce={200} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
           //   renderLeftButton={() => <Image source={require('path/custom/left-icon')} />}
-          renderRightButton={() => <Text style={styles.selectedLocation}>{this.state.location.address}</Text>}
+          renderRightButton={() => <Text style={styles.selectedLocation}>{this.state.address}</Text>}
         />
         <Button
           raised
@@ -129,8 +137,6 @@ const styles = StyleSheet.create({
   inputs: {
     fontSize: 20,
     textAlign: 'center',
-    // margin: 100,
-    // padding:100
   },
   button: {
     width: width,
