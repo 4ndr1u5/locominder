@@ -4,6 +4,7 @@ import { Button, FormLabel, FormInput } from 'react-native-elements';
 import GooglePlacesInput from './GooglePlacesInput'
 const { width, height } = Dimensions.get('window');
 import ReminderModel from '../Model/Reminder'
+import BackgroundGeolocation from "react-native-background-geolocation";
 
 const homePlace = { description: 'Home', geometry: { location: { lat: 48.8152937, lng: 2.4597668 } } };
 const workPlace = { description: 'Work', geometry: { location: { lat: 48.8496818, lng: 2.2940881 } } };
