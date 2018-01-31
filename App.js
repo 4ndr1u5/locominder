@@ -15,6 +15,7 @@ import {
 import  GridList from './src/Components/GridList'
 import  MapList from './src/Components/MapList'
 import  Reminder from './src/Components/Reminder'
+import  HelloWorld from './src/Components/BackgroundTracking'
 
 import {
   StackNavigator,
@@ -22,6 +23,7 @@ import {
 
 
 export default App = StackNavigator({
+  HelloWorld: { screen: HelloWorld },
   MapList: { screen: MapList },
   Reminder: { screen: Reminder },
   GridList: { screen: GridList },
