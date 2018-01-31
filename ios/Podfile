@@ -37,6 +37,12 @@ target 'locominder' do
   pod 'RNBackgroundGeolocation', :path => '../node_modules/react-native-background-geolocation'
   pod 'RNBackgroundFetch', :path => '../node_modules/react-native-background-fetch'
   pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
+  
+  # Pods for AppCenter
+  pod 'AppCenter/Crashes', '~> 1.1.0'
+  pod 'AppCenterReactNativeShared', '~> 1.1.0'
+  pod 'AppCenter/Analytics', '~> 1.1.0'
+  pod 'CodePush', :path => '../node_modules/react-native-code-push'
 
 end
 

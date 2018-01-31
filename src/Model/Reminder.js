@@ -12,7 +12,7 @@ const Reminder = {
     }
 };
 
-const realm = new Realm({ path: "/Users/Andrius/Desktop/locominder.realm", schema: [Reminder] });
+const realm = new Realm({ schema: [Reminder] });
 
 export default class ReminderModel {
     getReminders = () => {

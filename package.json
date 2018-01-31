@@ -8,10 +8,15 @@
         "flow": "flow"
     },
     "dependencies": {
+        "appcenter": "^1.1.0",
+        "appcenter-analytics": "^1.1.0",
+        "appcenter-crashes": "^1.1.0",
+        "code-push": "^2.0.5",
         "native-base": "^2.3.7",
         "react": "16.2.0",
         "react-native": "^0.52.2",
         "react-native-background-geolocation": "^2.10.1",
+        "react-native-code-push": "^5.2.1",
         "react-native-device-info": "^0.14.0",
         "react-native-easy-grid": "^0.1.17",
         "react-native-geocoding": "^0.2.0",

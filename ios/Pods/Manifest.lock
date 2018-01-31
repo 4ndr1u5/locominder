@@ -1,10 +1,31 @@
 PODS:
+  - AppCenter/Analytics (1.1.0):
+    - AppCenter/Core
+  - AppCenter/Core (1.1.0)
+  - AppCenter/Crashes (1.1.0):
+    - AppCenter/Core
+  - AppCenterReactNativeShared (1.1.0):
+    - AppCenter/Core (= 1.1.0)
   - CocoaLumberjack (3.4.1):
     - CocoaLumberjack/Default (= 3.4.1)
     - CocoaLumberjack/Extensions (= 3.4.1)
   - CocoaLumberjack/Default (3.4.1)
   - CocoaLumberjack/Extensions (3.4.1):
     - CocoaLumberjack/Default
+  - CodePush (5.2.1):
+    - CodePush/Base64 (= 5.2.1)
+    - CodePush/Core (= 5.2.1)
+    - CodePush/JWT (= 5.2.1)
+    - CodePush/SSZipArchive (= 5.2.1)
+    - React
+  - CodePush/Base64 (5.2.1):
+    - React
+  - CodePush/Core (5.2.1):
+    - React
+  - CodePush/JWT (5.2.1):
+    - React
+  - CodePush/SSZipArchive (5.2.1):
+    - React
   - GoogleMaps (2.5.0):
     - GoogleMaps/Maps (= 2.5.0)
   - GoogleMaps/Base (2.5.0)
@@ -65,6 +86,10 @@ PODS:
   - yoga (0.52.2.React)
 
 DEPENDENCIES:
+  - AppCenter/Analytics (~> 1.1.0)
+  - AppCenter/Crashes (~> 1.1.0)
+  - AppCenterReactNativeShared (~> 1.1.0)
+  - CodePush (from `../node_modules/react-native-code-push`)
   - GoogleMaps
   - React (from `../node_modules/react-native`)
   - react-native-google-maps (from `../node_modules/react-native-maps`)
@@ -88,6 +113,8 @@ DEPENDENCIES:
   - yoga (from `../node_modules/react-native/ReactCommon/yoga/yoga.podspec`)
 
 EXTERNAL SOURCES:
+  CodePush:
+    :path: ../node_modules/react-native-code-push
   React:
     :path: ../node_modules/react-native
   react-native-google-maps:
@@ -106,7 +133,10 @@ EXTERNAL SOURCES:
     :path: ../node_modules/react-native/ReactCommon/yoga/yoga.podspec
 
 SPEC CHECKSUMS:
+  AppCenter: 97c88c10f83719de514aa7f186766f289012f074
+  AppCenterReactNativeShared: 76f8034b52ce0a9edcdb67b98f85e9790c813318
   CocoaLumberjack: 2e258a064cacc8eb9a2aca318e24d02a0a7fd56d
+  CodePush: af67b07310e4037ecd5c38f03c7a51c6350240b5
   GoogleMaps: c087b8e5dfe87ca6ebf59adb9b4894a4146bec4f
   React: 43e97926f429d846050880666de1809e22dd5cc5
   react-native-google-maps: 963fc78a5ac32dad3a726e4fa08b5307faa5cab2
@@ -117,6 +147,6 @@ SPEC CHECKSUMS:
   RNVectorIcons: c0dbfbf6068fefa240c37b0f71bd03b45dddac44
   yoga: 55da126afc384965b96bff46652464373b330add
 
-PODFILE CHECKSUM: 351230b59a8c13d0ebb3290be74fefb858df4521
+PODFILE CHECKSUM: 4f36e3bc58117b674ba4f63b7eeaf6d8031c232b
 
 COCOAPODS: 1.4.0

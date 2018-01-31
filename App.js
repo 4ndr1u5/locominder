@@ -20,12 +20,30 @@ import  HelloWorld from './src/Components/BackgroundTracking'
 import {
   StackNavigator,
 } from 'react-navigation';
+import codePush from "react-native-code-push";
 
 
-export default App = StackNavigator({
-  HelloWorld: { screen: HelloWorld },
+export default App = codePush(StackNavigator({
+  // HelloWorld: { screen: HelloWorld },
   MapList: { screen: MapList },
   Reminder: { screen: Reminder },
   GridList: { screen: GridList },
-});
+}));
+// export default class App extends Component<{}> {
+
+//   constructor(props) {
+//     super(props);
+//   }
+
+//   render(){
+//     return (
+//       StackNavigator({
+//         HelloWorld: { screen: HelloWorld },
+//         MapList: { screen: MapList },
+//         Reminder: { screen: Reminder },
+//         GridList: { screen: GridList },
+//       })
+//     )
+//   }
+// }
 
