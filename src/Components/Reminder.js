@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { ScrollView, View, Dimensions, StyleSheet, Platform, Text, TextInput, Picker } from 'react-native';
-import { Button, FormLabel, FormInput } from 'react-native-elements';
+import { Button, Input, Item, Label } from 'native-base';
 import GooglePlacesInput from './GooglePlacesInput'
 const { width, height } = Dimensions.get('window');
 import ReminderModel from '../Model/Reminder'
-import BackgroundGeolocation from "react-native-background-geolocation";
 
 const homePlace = { description: 'Home', geometry: { location: { lat: 48.8152937, lng: 2.4597668 } } };
 const workPlace = { description: 'Work', geometry: { location: { lat: 48.8496818, lng: 2.2940881 } } };
@@ -52,18 +51,16 @@ export default class Reminder extends Component<{}> {
   render() {
     return (
       <View style={styles.container}>
-        <FormLabel>Remind me to...</FormLabel>
-        <FormInput inputStyle={styles.inputs} ref="title" onChangeText={(text) => this.setReminderText(text)} />
-        <FormLabel>@</FormLabel>
+        <Item floatingLabel>
+          <Label>remind me to...</Label>
+          <Input ref="title" onChangeText={(text) => this.setReminderText(text)} />
+        </Item>
+
         <GooglePlacesInput setLocation={this.setLocation.bind(this)} reminder={this.state} />
 
-        <Button
-          raised
-          buttonStyle={styles.button}
-          textStyle={{ textAlign: 'center' }}
-          title={`Create`}
-          onPress={this.saveReminder.bind(this)}
-        />
+         <Button block light onPress={this.saveReminder.bind(this)}>
+            <Text>Create</Text>
+          </Button>
       </View>
     );
   }
