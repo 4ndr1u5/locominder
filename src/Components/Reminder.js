@@ -30,8 +30,12 @@ export default class Reminder extends Component<{}> {
       desc: this.state.title,
       address: this.state.address,
     })
-    const { navigate } = this.props.navigation;
-    navigate('MapList', { reminder: this.state })
+    // const { navigate } = this.props.navigation;
+    // navigate('MapList', { reminder: this.state })
+    this.props.navigator.push({
+      screen: 'loco.MapList',
+      passProps: { reminder: this.state }
+    });
   }
   setReminderText = (text) => {
     this.setState({

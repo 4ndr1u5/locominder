@@ -16,9 +16,10 @@ export default class MapList extends Component<{}> {
     constructor(props) {
         super(props);
         let reminder = null
-
-        if (this.props.navigation.state.params) {
-            reminder = this.props.navigation.state.params.reminder
+        // console.log('this.props')
+        // console.log(this.props)
+        if (this.props.reminder) {
+            reminder = this.props.reminder
         }
         let model = new ReminderModel();
         let reminders = model.getReminders()
@@ -39,7 +40,10 @@ export default class MapList extends Component<{}> {
     }
     addReminder = () => {
         const { navigate } = this.props.navigation;
-        navigate('Reminder')
+        // navigate('Reminder')
+        this.props.navigator.push({
+            screen: 'loco.Reminder',
+          });
     }
 
     _getRegion = (reminder) => {
