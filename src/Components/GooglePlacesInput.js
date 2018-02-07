@@ -2,8 +2,8 @@ import React from 'react';
 import { View, Image, Text, StyleSheet, Dimensions } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 const { width, height } = Dimensions.get('window');
-const homePlace = { description: 'Home', geometry: { location: { lat: 48.8152937, lng: 2.4597668 } }};
-const workPlace = { description: 'Work', geometry: { location: { lat: 48.8496818, lng: 2.2940881 } }};
+// const homePlace = { description: 'Home', geometry: { location: { lat: 48.8152937, lng: 2.4597668 } }};
+// const workPlace = { description: 'Work', geometry: { location: { lat: 48.8496818, lng: 2.2940881 } }};
  
 export default GooglePlacesInput = (props) => {
   return (
@@ -21,9 +21,9 @@ export default GooglePlacesInput = (props) => {
           }}
           query={{
             // available options: https://developers.google.com/places/web-service/autocomplete
-            key: 'AIzaSyC_I1djbTw-2Htu47whoplsXc-0jaATGjE',
+            key: 'AIzaSyDkSmNSp5ZI0RdSF3bL2LJY_eyK9ojbLsI',
             language: 'en', // language of the results
-            types: '(cities)' // default: 'geocode'
+            // types: '(geocode)' 
           }}
           styles={{
             textInputContainer: {
@@ -39,24 +39,17 @@ export default GooglePlacesInput = (props) => {
               fontSize: 16
             },
             predefinedPlacesDescription: {
-              color: '#1faadb'
+              color: 'tomato'
             },
           }}
 
           currentLocation={true} // Will add a 'Current location' button at the top of the predefined places list
           currentLocationLabel="Current location"
           nearbyPlacesAPI='GooglePlacesSearch' // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
-          GoogleReverseGeocodingQuery={{
-            // available options for GoogleReverseGeocoding API : https://developers.google.com/maps/documentation/geocoding/intro
-          }}
-          GooglePlacesSearchQuery={{
-            // available options for GooglePlacesSearch API : https://developers.google.com/places/web-service/search
-            rankby: 'distance',
-            types: 'food'
-          }}
+          
 
-          filterReverseGeocodingByTypes={['locality', 'administrative_area_level_3']} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities
-          predefinedPlaces={[homePlace, workPlace]}
+          // filterReverseGeocodingByTypes={['locality', 'administrative_area_level_3']} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities
+          // predefinedPlaces={[homePlace, workPlace]}
 
           debounce={200} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
           //   renderLeftButton={() => <Image source={require('path/custom/left-icon')} />}

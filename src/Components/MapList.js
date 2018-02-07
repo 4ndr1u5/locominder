@@ -11,33 +11,34 @@ const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 import BgTracking from './BackgroundTracking'
+import MyLocationMapMarker from './MyLocationMapMarker'
 
 export default class MapList extends Component<{}> {
     constructor(props) {
         super(props);
         let reminder = null
-        // console.log('this.props')
-        // console.log(this.props)
-        if (this.props.reminder) {
-            reminder = this.props.reminder
-        }
+        // if (this.props.reminder) {
+        //     reminder = this.props.reminder
+        // }
         let model = new ReminderModel();
         let reminders = model.getReminders()
 
-        if (reminder) {
+        // if (reminder) {
+        //     this.state = {
+        //         reminder
+        //     };
+        // }
+        // else {
             this.state = {
-                reminder
-            };
-        }
-        else {
-            this.state = {
-                reminders
+                reminders,
             };
 
-        }
+        // }
 
 
     }
+
+
     addReminder = () => {
         const { navigate } = this.props.navigation;
         // navigate('Reminder')
@@ -55,6 +56,8 @@ export default class MapList extends Component<{}> {
         }
     }
 
+
+
     render() {
         return (
             <View style={styles.container}>
@@ -68,7 +71,7 @@ export default class MapList extends Component<{}> {
                         style={styles.map}
                         scrollEnabled={true}
                         showsUserLocation={true}
-                        followsUserLocation={true}
+                        followsUserLocation={false}
                         showsMyLocationButton={true}
                         showsPointsOfInterest={false}
                         showsScale={true}
@@ -77,6 +80,7 @@ export default class MapList extends Component<{}> {
                         rotateEnabled={true}
                         initialRegion={this.state.region}
                     >
+                    <MyLocationMapMarker/>
                         {this.state.reminders && this.state.reminders.map(reminder =>
                             <MapView.Marker
                                 title={reminder.title}
@@ -84,11 +88,11 @@ export default class MapList extends Component<{}> {
                                 coordinate={this._getRegion(reminder)}
                             />
                         )}
-                        {this.state.reminder && <MapView.Marker
+                        {/* {this.state.reminder && <MapView.Marker
                             title={this.state.reminder.title}
                             description="..."
                             coordinate={this._getRegion(this.state.reminder)}
-                        />}
+                        />} */}
 
                     </MapView>
                     <Button

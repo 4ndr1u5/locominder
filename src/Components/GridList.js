@@ -10,9 +10,7 @@ const SCREEN_HEIGHT = height;
 export default class GridList extends Component<{}> {
   constructor(props) {
     super(props);
-    let reminder = null
-console.log('this.props')
-console.log(this.props)
+
     if (this.props.reminder) {
       reminder = this.props.reminder
     }
