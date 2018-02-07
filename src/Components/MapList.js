@@ -58,6 +58,7 @@ export default class MapList extends Component<{}> {
     render() {
         return (
             <View style={styles.container}>
+                <BgTracking />
                 <ScrollView
                     style={StyleSheet.absoluteFill}
                     contentContainerStyle={styles.scrollview}
@@ -66,6 +67,11 @@ export default class MapList extends Component<{}> {
                         provider={this.props.provider}
                         style={styles.map}
                         scrollEnabled={true}
+                        showsUserLocation={true}
+                        followsUserLocation={true}
+                        showsMyLocationButton={true}
+                        showsPointsOfInterest={false}
+                        showsScale={true}
                         zoomEnabled={true}
                         pitchEnabled={true}
                         rotateEnabled={true}

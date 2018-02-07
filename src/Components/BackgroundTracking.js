@@ -20,20 +20,12 @@ import {
 
 import { Row } from 'react-native-easy-grid';
 
-////
-// Import BackgroundGeolocation plugin
-// Note: normally you will not specify a relative url ../ here.  I do this in the sample app
-// because the plugin can be installed from 2 sources:
-//
-// 1.  npm:  react-native-background-geolocation
-// 2.  private github repo (customers only):  react-native-background-geolocation-android
-//
-// This simply allows one to change the import in a single file.
+
 import BackgroundGeolocation from "react-native-background-geolocation";
 
 const TRACKER_HOST = 'http://tracker.transistorsoft.com/locations/';
 
-export default class HelloWorld extends Component<{}> {
+export default class BackgroundTracking extends Component<{}> {
 
   constructor(props) {
     super(props);
@@ -41,8 +33,8 @@ export default class HelloWorld extends Component<{}> {
     this.eventId = 1;
 
     this.state = {
-      enabled: false,
-      isMoving: false,
+      enabled: true,
+      isMoving: true,
       username: "user",
       events: []
     };
@@ -80,12 +72,12 @@ export default class HelloWorld extends Component<{}> {
       debug: true,
       logLevel: BackgroundGeolocation.LOG_LEVEL_VERBOSE
     }, (state) => {
-      console.log('- Configure success: ', state);
       this.setState({
         enabled: state.enabled,
         isMoving: state.isMoving
-      });      
-    });    
+      });
+    });
+    BackgroundGeolocation.start();      
   }
 
   /**
@@ -141,42 +133,6 @@ export default class HelloWorld extends Component<{}> {
     this.addEvent('heartbeat', new Date(), event);
   }
 
-  onToggleEnabled(value) {
-    let enabled = !this.state.enabled;
-    this.setState({
-      enabled: enabled,
-      isMoving: false
-    });
-    if (enabled) {
-      BackgroundGeolocation.start();
-    } else {
-      BackgroundGeolocation.stop();
-    }
-  }
-
-  onClickGetCurrentPosition() {
-    BackgroundGeolocation.getCurrentPosition((location) => {
-      console.log('- getCurrentPosition success: ', location);
-    }, (error) => {
-      console.warn('- getCurrentPosition error: ', error);
-    }, {
-      persist: true,
-      samples: 1,
-      maximumAge: 5000
-    });
-  }
-
-  onClickChangePace() {
-    console.log('- onClickChangePace');
-    let isMoving = !this.state.isMoving;
-    this.setState({isMoving: isMoving});
-    BackgroundGeolocation.changePace(isMoving);
-  }
-
-  onClickClear() {
-    this.setState({events: []});
-  }
-
   /**
   * Add an event to list
   */
@@ -194,100 +150,10 @@ export default class HelloWorld extends Component<{}> {
     });
   }
 
-  renderEvents() {
-    return this.state.events.map((event) => (
-      <View key={event.key} style={styles.listItem}>
-        <Row style={styles.itemHeader}>
-          <Left style={{flex:1}}><Text style={styles.eventName}>[event] {event.name}</Text></Left>
-          <Right><Text style={styles.eventTimestamp}>{event.timestamp}</Text></Right>
-        </Row>
-        <Row><Text style={styles.eventJson}>{event.json}</Text></Row>
-      </View>
-    ));
-  }
 
   render() {
-    return (
-      <Container style={styles.container}>
-        <Header style={styles.header}>
-          <Left>
-            <Button small transparent >
-              <Icon active name="arrow-back" style={{color: '#000'}}/>
-            </Button>
-          </Left>
-          <Body>
-            <Title style={styles.title}>Hello World</Title>
-          </Body>
-          <Right>
-            <Switch onValueChange={() => this.onToggleEnabled()} value={this.state.enabled} />
-          </Right>
-        </Header>
-
-        <Content style={styles.content}>
-          <View style={styles.list}>
-            {this.renderEvents()}
-          </View>          
-        </Content>
-
-        <Footer style={styles.footer}>
-          <Left style={{flex:0.3}}>
-            <Button small info>
-              <Icon active name="md-navigate" style={styles.icon} onPress={this.onClickGetCurrentPosition.bind(this)} />
-            </Button>
-          </Left>
-          <Body style={styles.footerBody}>
-            <Button small danger bordered onPress={this.onClickClear.bind(this)}><Icon name="trash" /></Button>
-          </Body>
-          <Right style={{flex:0.3}}>
-            <Button small danger={this.state.isMoving} success={!this.state.isMoving} onPress={this.onClickChangePace.bind(this)}>
-              <Icon active name={(this.state.isMoving) ? 'pause' : 'play'} style={styles.icon}/>
-            </Button>
-          </Right>
-        </Footer>
-      </Container>
-    );
+    return null
   }
 
 }
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#272727'
-  },
-  header: {
-    backgroundColor: '#fedd1e'
-  },
-  title: {
-    color: '#000'
-  },
-  listItem: {
-    marginBottom: 10
-  },
-  itemHeader: {
-    backgroundColor: '#D5B601',
-    padding: 5
-  },
-  eventName: {
-    fontSize: 12,
-    fontWeight: 'bold'
-  },
-  eventTimestamp: {
-    fontSize: 12
-  },
-  eventJson: {
-    fontFamily: 'Courier New',
-    fontSize: 12,
-    color: '#e6db74'
-  },
-  footer: {
-    backgroundColor: '#fedd1e',
-    paddingLeft: 10, 
-    paddingRight: 10
-  },
-  footerBody: {
-    justifyContent: 'center'
-  },
-  icon: {
-    color: '#fff'
-  }
-});
